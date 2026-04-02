@@ -492,8 +492,8 @@ export default function Home() {
             <div className="impl-step">
               <span className="impl-step-num">1</span>
               <div>
-                <strong>The Magic Show</strong>
-                <p>An immersive experience that helps you discover your guiding question — using multi-intelligence to tap into what the entity wants to be, not what you think it should be.</p>
+                <strong>Discovery</strong>
+                <p>An immersive, embodied ceremony — in person or virtual — that helps you discover your guiding question. Using somatic, emotional, and intuitive intelligence to sense what the entity wants to become, not what you think it should be.</p>
               </div>
             </div>
             <div className="impl-step">
