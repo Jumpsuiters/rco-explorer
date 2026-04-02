@@ -2,6 +2,9 @@
 
 import { useState } from 'react';
 
+/* ============================================================
+   DATA — JOB org chart
+   ============================================================ */
 const DATA = {
   holdco: {
     label: 'For-Profit HoldCo',
@@ -78,12 +81,51 @@ const DATA = {
       {
         id: 'research',
         label: 'Research & Publication Arm',
-        desc: 'Studying what happens when humans deprogramm. Publishing findings. Building the evidence base for a new way of being. The organism documents its own evolution.',
+        desc: 'Studying what happens when humans deprogram. Publishing findings. Building the evidence base for a new way of being. The organism documents its own evolution.',
       },
     ],
   },
 };
 
+/* ============================================================
+   DIAGNOSTIC — "Could your organization be an RCO?"
+   ============================================================ */
+const QUESTIONS = [
+  {
+    q: 'Does your mission sometimes conflict with your revenue model?',
+    yes: 'This is the core tension the RCO resolves. When mission and money live in separate entities with shared purpose, they stop fighting.',
+    no: 'Lucky you. But if growth ever pressures you to compromise, the RCO has a structural answer.',
+  },
+  {
+    q: 'Do you serve a community that should have ownership in what you\'re building?',
+    yes: 'RCOs are designed for exactly this — community ownership through equitable value distribution, not just lip service.',
+    no: 'Even traditional businesses benefit from stakeholder alignment. The RCO model makes it structural, not aspirational.',
+  },
+  {
+    q: 'Are you trying to build something that outlasts you?',
+    yes: 'Purpose trusts and dual-entity design mean the mission can\'t be sold, acquired, or diluted. It\'s built to outlive its founders.',
+    no: 'Nothing wrong with that. But if you ever feel the pull toward legacy, the structure will be here.',
+  },
+  {
+    q: 'Do you have both commercial activities AND a public benefit or social mission?',
+    yes: 'You\'re already living the dual reality. The RCO gives it a legal and organizational home — instead of forcing one side to subsidize the other.',
+    no: 'An RCO might not be the right fit today. But as your work matures, the need for structural integrity between mission and commerce often emerges.',
+  },
+  {
+    q: 'Would your organization benefit from incubating new experiments without risking the whole?',
+    yes: 'The SPV model lets you spin up experiments, fund them independently, and let them fail or fly — without endangering the mothership.',
+    no: 'Focus is powerful. The RCO is for organisms that want to grow through exploration, not just optimization.',
+  },
+  {
+    q: 'Do you believe the organizational structures we inherited are inadequate for what\'s coming next?',
+    yes: 'Then you already understand why the RCO exists. New paradigms need new containers.',
+    no: 'We respectfully disagree. But we\'d love to buy you coffee and talk about it.',
+  },
+];
+
+/* ============================================================
+   COMPONENTS
+   ============================================================ */
 function Node({ item, depth = 0 }) {
   const [open, setOpen] = useState(false);
   const hasChildren = item.children && item.children.length > 0;
@@ -95,12 +137,8 @@ function Node({ item, depth = 0 }) {
         onClick={() => setOpen(!open)}
       >
         <div className="node-label">{item.label}</div>
-        {open && item.desc && (
-          <div className="node-desc">{item.desc}</div>
-        )}
-        {!open && item.desc && (
-          <div className="node-hint">Click to explore</div>
-        )}
+        {open && item.desc && <div className="node-desc">{item.desc}</div>}
+        {!open && item.desc && <div className="node-hint">Click to explore</div>}
       </div>
       {open && hasChildren && (
         <div className="node-children">
@@ -137,23 +175,212 @@ function Column({ side, data }) {
   );
 }
 
+function Diagnostic() {
+  const [current, setCurrent] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [started, setStarted] = useState(false);
+
+  const total = QUESTIONS.length;
+  const done = current >= total;
+  const yesCount = answers.filter((a) => a === true).length;
+
+  function answer(isYes) {
+    setAnswers([...answers, isYes]);
+    setCurrent(current + 1);
+  }
+
+  function reset() {
+    setCurrent(0);
+    setAnswers([]);
+    setStarted(false);
+  }
+
+  if (!started) {
+    return (
+      <section className="diagnostic">
+        <span className="diagnostic-eyebrow">Interactive</span>
+        <h2 className="diagnostic-title">Could your organization be an RCO?</h2>
+        <p className="diagnostic-intro">
+          Six questions. No right answers. Just a mirror for where your organization is
+          and whether the RCO model might be the structure it&apos;s been missing.
+        </p>
+        <button className="diagnostic-start" onClick={() => setStarted(true)}>
+          Start the diagnostic
+        </button>
+      </section>
+    );
+  }
+
+  if (done) {
+    const level =
+      yesCount >= 5 ? 'high' : yesCount >= 3 ? 'medium' : 'low';
+
+    const verdicts = {
+      high: {
+        headline: 'Your organization is ready for this.',
+        body: 'You\'re already living the tensions the RCO was designed to resolve. You don\'t need convincing — you need a blueprint. Business 3.0 can help you design and implement your RCO structure.',
+      },
+      medium: {
+        headline: 'There\'s something here.',
+        body: 'You\'re feeling the pull between mission and commerce, between growth and integrity. The RCO won\'t solve everything, but it gives those tensions a home instead of letting them tear at your culture. Worth a conversation.',
+      },
+      low: {
+        headline: 'Maybe not yet. And that\'s fine.',
+        body: 'The RCO is a specific answer to a specific set of tensions. If you\'re not feeling them yet, the model might not be for you right now. But bookmark this — organizations evolve, and when the tension shows up, you\'ll know where to look.',
+      },
+    };
+
+    return (
+      <section className="diagnostic">
+        <span className="diagnostic-eyebrow">Your result</span>
+        <h2 className="diagnostic-title">{verdicts[level].headline}</h2>
+        <div className="diagnostic-score">
+          <div className="score-bar">
+            <div
+              className="score-fill"
+              style={{ width: `${(yesCount / total) * 100}%` }}
+            />
+          </div>
+          <span className="score-label">{yesCount} of {total} signals detected</span>
+        </div>
+        <p className="diagnostic-verdict">{verdicts[level].body}</p>
+        <div className="diagnostic-actions">
+          {level !== 'low' && (
+            <a
+              href="https://business-30.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="diagnostic-cta"
+            >
+              Talk to Business 3.0
+            </a>
+          )}
+          <button className="diagnostic-reset" onClick={reset}>
+            Take it again
+          </button>
+        </div>
+      </section>
+    );
+  }
+
+  const q = QUESTIONS[current];
+  const prevAnswer = current > 0 ? answers[current - 1] : null;
+  const prevQ = current > 0 ? QUESTIONS[current - 1] : null;
+
+  return (
+    <section className="diagnostic">
+      <span className="diagnostic-eyebrow">
+        Question {current + 1} of {total}
+      </span>
+      {prevQ && prevAnswer !== null && (
+        <div className="diagnostic-reflection">
+          <p>{prevAnswer ? prevQ.yes : prevQ.no}</p>
+        </div>
+      )}
+      <h2 className="diagnostic-question">{q.q}</h2>
+      <div className="diagnostic-buttons">
+        <button className="diag-btn diag-yes" onClick={() => answer(true)}>
+          Yes
+        </button>
+        <button className="diag-btn diag-no" onClick={() => answer(false)}>
+          No
+        </button>
+      </div>
+      <div className="diagnostic-progress">
+        {QUESTIONS.map((_, i) => (
+          <div
+            key={i}
+            className={`progress-dot ${i < current ? 'progress-done' : ''} ${i === current ? 'progress-current' : ''}`}
+          />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+/* ============================================================
+   PAGE
+   ============================================================ */
 export default function Home() {
   return (
     <div className="page">
+      {/* ===== HERO ===== */}
       <header className="header">
         <p className="header-eyebrow">Regenerative Community Organism</p>
-        <h1 className="header-title">How we structure J.O.B.</h1>
+        <h1 className="header-title">The company is dead.<br />Long live the organism.</h1>
         <p className="header-sub">
           Not a company, an organism. Sovereign entities, in regenerative relationship with one another, each uniquely exploring the same question:
         </p>
         <p className="header-question">
           What happens when being human IS the job?
         </p>
-        <p className="header-sub">
-          Click anything to explore.
-        </p>
       </header>
 
+      {/* ===== WHAT IS AN RCO ===== */}
+      <section className="explainer">
+        <h2 className="explainer-title">What is an RCO?</h2>
+        <p className="explainer-body">
+          A <strong>Regenerative Community Organism</strong> is a new form of organizational design — created by entrepreneurs <strong>Nils von Heijne</strong> and <strong>Amit Paul</strong> — that fuses a for-profit enterprise with a nonprofit association under a shared, protected purpose.
+        </p>
+        <p className="explainer-body" style={{ marginTop: '0.75rem' }}>
+          It&apos;s built on a simple conviction: the organizational structures we inherited — corporations optimized for extraction, nonprofits optimized for survival — are not adequate for what&apos;s coming next. We need containers that can hold both commerce and conscience without one consuming the other.
+        </p>
+
+        <div className="explainer-principles">
+          <div className="explainer-principle">
+            <span className="principle-label">Dual Entity</span>
+            <p>A for-profit company and a nonprofit association, legally separate but sharing the same underlying purpose. Commerce funds the mission. The mission governs the commerce. Neither can exist without the other.</p>
+          </div>
+          <div className="explainer-principle">
+            <span className="principle-label">Natural Lifecycle</span>
+            <p>RCOs have lifecycle stages — like organisms, not machines. They seed, grow, reproduce, and evolve. The structure honors this instead of forcing perpetual growth.</p>
+          </div>
+          <div className="explainer-principle">
+            <span className="principle-label">Fair Value Distribution</span>
+            <p>Stakeholders, community, and investors all participate in the value the organism creates. Not charity. Not extraction. Regeneration — where the system creates more than it consumes.</p>
+          </div>
+        </div>
+
+        <p className="explainer-source">
+          The RCO framework was pioneered by <a href="https://rco.life" target="_blank" rel="noopener noreferrer">rco.life</a>. The first formally incorporated RCO is <a href="https://innrwrks.com" target="_blank" rel="noopener noreferrer">Innrwrks</a>, a resilience lab in Sweden.
+        </p>
+      </section>
+
+      {/* ===== WHY NOW ===== */}
+      <section className="why-now">
+        <h2 className="explainer-title">Why now?</h2>
+        <div className="why-grid">
+          <div className="why-card">
+            <span className="why-number">01</span>
+            <h3>AI is displacing work faster than we can retrain for it</h3>
+            <p>The jobs aren&apos;t coming back. But human potential isn&apos;t going anywhere. We need structures that develop humans, not just employ them.</p>
+          </div>
+          <div className="why-card">
+            <span className="why-number">02</span>
+            <h3>Mission-driven founders keep hitting the same wall</h3>
+            <p>You either sell out (literally) or burn out (structurally). The RCO is a third option: build commercially while protecting the mission with the force of law.</p>
+          </div>
+          <div className="why-card">
+            <span className="why-number">03</span>
+            <h3>Community ownership is becoming viable</h3>
+            <p>Reg CF, equity crowdfunding, DAOs, purpose trusts — the infrastructure for community-owned organizations finally exists. The RCO gives it form.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== JOB AS PROOF ===== */}
+      <section className="job-rco">
+        <span className="job-rco-eyebrow">Case study</span>
+        <h2 className="explainer-title">J.O.B. is the first RCO in the United States.</h2>
+        <p className="explainer-body">
+          J.O.B. — the Joy of Being — is bringing the RCO model to America. Not as a theory, but as a living proof of concept. A dual-entity organism where a church, a marketplace, a consulting practice, immersive experiences, and a community investment pool all share the same root system.
+        </p>
+        <p className="explainer-body" style={{ marginTop: '0.75rem' }}>
+          Click into the structure below to see how it works.
+        </p>
+      </section>
+
+      {/* ===== INTERACTIVE ORG CHART ===== */}
       <div className="organism">
         <div className="organism-root">
           <span className="organism-root-label">J.O.B.</span>
@@ -171,8 +398,76 @@ export default function Home() {
         </div>
       </div>
 
+      {/* ===== DIAGNOSTIC ===== */}
+      <Diagnostic />
+
+      {/* ===== IMPLEMENTER ===== */}
+      <section className="implementer">
+        <div className="implementer-inner">
+          <span className="implementer-eyebrow">The path</span>
+          <h2 className="implementer-title">Business 3.0: Official RCO Implementer</h2>
+          <p className="implementer-body">
+            J.O.B. isn&apos;t just adopting the RCO model — we&apos;re building the practice of implementing it for others. Through <strong>Business 3.0</strong>, our organizational transformation arm, we help founders and organizations design, structure, and launch their own RCOs.
+          </p>
+          <p className="implementer-body">
+            Whether you&apos;re a mission-driven startup that needs a structure that won&apos;t betray you, or an established organization ready to evolve — this is the door.
+          </p>
+          <div className="implementer-steps">
+            <div className="impl-step">
+              <span className="impl-step-num">1</span>
+              <div>
+                <strong>Discovery</strong>
+                <p>We map your mission, your commercial reality, and the tensions between them.</p>
+              </div>
+            </div>
+            <div className="impl-step">
+              <span className="impl-step-num">2</span>
+              <div>
+                <strong>Design</strong>
+                <p>We architect your dual-entity structure — what lives where, how value flows, how the mission stays protected.</p>
+              </div>
+            </div>
+            <div className="impl-step">
+              <span className="impl-step-num">3</span>
+              <div>
+                <strong>Launch</strong>
+                <p>We help you incorporate, set up governance, and begin operating as a living organism.</p>
+              </div>
+            </div>
+          </div>
+          <a href="https://business-30.vercel.app/" target="_blank" rel="noopener noreferrer" className="implementer-cta">Explore Business 3.0</a>
+        </div>
+      </section>
+
+      {/* ===== INVESTORS ===== */}
+      <section className="investors">
+        <h2 className="explainer-title">For investors</h2>
+        <p className="explainer-body">
+          The RCO isn&apos;t anti-profit. It&apos;s anti-extraction. Investors participate in the upside through the HoldCo — community-owned equity via Reg CF crowdfunding. When the organism thrives, everyone who believed in it shares in what it creates.
+        </p>
+        <p className="explainer-body" style={{ marginTop: '0.75rem' }}>
+          J.O.B. is raising its first round through <strong>Wefunder</strong>. If you want to own a piece of the first US RCO — not as a bet on a company, but as a stake in a new way of organizing human potential — we&apos;d love to talk.
+        </p>
+        <a
+          href="https://itsthejob.vercel.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="investors-cta"
+        >
+          Express interest at itsthejob.vercel.app
+        </a>
+      </section>
+
+      {/* ===== FOOTER ===== */}
       <footer className="footer">
-        <p>The organism is growing. <a href="https://itsthejob.vercel.app" target="_blank" rel="noopener noreferrer">itsthejob.vercel.app</a></p>
+        <p>
+          The organism is growing.
+        </p>
+        <div className="footer-links">
+          <a href="https://itsthejob.vercel.app" target="_blank" rel="noopener noreferrer">J.O.B.</a>
+          <a href="https://business-30.vercel.app/" target="_blank" rel="noopener noreferrer">Business 3.0</a>
+          <a href="https://rco.life" target="_blank" rel="noopener noreferrer">rco.life</a>
+        </div>
       </footer>
     </div>
   );
