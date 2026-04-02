@@ -366,17 +366,22 @@ export default function Home() {
       {/* ===== HERO ===== */}
       <header className="header">
         <p className="header-eyebrow">Regenerative Community Organism</p>
-        <h1 className="header-title">The company is dead.<br />Long live the organism.</h1>
+        <h1 className="header-title">From organizations<br />to living, breathing organisms.</h1>
         <p className="header-sub">
-          Every RCO is organized around a guiding question — a living inquiry that shapes everything the organism does. Ours is:
-        </p>
-        <p className="header-question">
-          What happens when being human IS the job?
-        </p>
-        <p className="header-sub">
-          Yours will be different. That&apos;s the point.
+          A new form of organizational design that fuses commerce and conscience — built to regenerate, not extract.
         </p>
       </header>
+
+      {/* ===== GUIDING QUESTION ===== */}
+      <section className="guiding-question-section">
+        <h2 className="explainer-title">Every RCO starts with a question.</h2>
+        <p className="explainer-body">
+          Not a mission statement. Not a tagline. A living inquiry — one that shapes every entity, every decision, and every relationship inside the organism. The question isn&apos;t something you answer. It&apos;s something you keep following.
+        </p>
+        <p className="header-question">
+          What&apos;s the question your organization can&apos;t stop asking?
+        </p>
+      </section>
 
       {/* ===== WHAT IS AN RCO ===== */}
       <section id="what" className="explainer">
