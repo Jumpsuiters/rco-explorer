@@ -379,7 +379,7 @@ export default function Home() {
           Not a mission statement. Not a tagline. A living inquiry — one that shapes every entity, every decision, and every relationship inside the organism. The question isn&apos;t something you answer. It&apos;s something you keep following.
         </p>
         <p className="header-question">
-          What&apos;s the question your organization can&apos;t stop asking?
+          What might be your guiding question?
         </p>
       </section>
 
@@ -484,26 +484,23 @@ export default function Home() {
       <section id="build" className="implementer">
         <div className="implementer-inner">
           <span className="implementer-eyebrow">The path</span>
-          <h2 className="implementer-title">Business 3.0: Official RCO Implementer</h2>
+          <h2 className="implementer-title">We&apos;ll guide you on your RCO journey.</h2>
           <p className="implementer-body">
-            J.O.B. isn&apos;t just adopting the RCO model — we&apos;re building the practice of implementing it for others. Through <strong>Business 3.0</strong>, our organizational transformation arm, we help founders and organizations design, structure, and launch their own RCOs.
-          </p>
-          <p className="implementer-body">
-            Whether you&apos;re a mission-driven startup that needs a structure that won&apos;t betray you, or an established organization ready to evolve — this is the door.
+            Through <strong>Business 3.0</strong>, our organizational transformation practice, we have a team of certified guides who help founders and organizations discover, design, and launch their own RCOs.
           </p>
           <div className="implementer-steps">
             <div className="impl-step">
               <span className="impl-step-num">1</span>
               <div>
-                <strong>Discovery</strong>
-                <p>We map your mission, your commercial reality, and the tensions between them.</p>
+                <strong>The Magic Show</strong>
+                <p>An immersive experience that helps you discover your guiding question — using multi-intelligence to tap into what the entity wants to be, not what you think it should be.</p>
               </div>
             </div>
             <div className="impl-step">
               <span className="impl-step-num">2</span>
               <div>
                 <strong>Design</strong>
-                <p>We architect your dual-entity structure — what lives where, how value flows, how the mission stays protected.</p>
+                <p>Your guide architects your dual-entity structure — what lives where, how value flows, how the mission stays protected.</p>
               </div>
             </div>
             <div className="impl-step">
