@@ -351,6 +351,21 @@ function Diagnostic() {
 export default function Home() {
   return (
     <div className="page">
+      {/* ===== NAV ===== */}
+      <nav className="nav">
+        <div className="nav-inner">
+          <a href="#" className="nav-logo">RCO</a>
+          <div className="nav-links">
+            <a href="#what">The Model</a>
+            <a href="#why">Why Now</a>
+            <a href="#job">J.O.B.</a>
+            <a href="#diagnostic">Diagnostic</a>
+            <a href="#build">Build Yours</a>
+            <a href="#invest">Invest</a>
+          </div>
+        </div>
+      </nav>
+
       {/* ===== HERO ===== */}
       <header className="header">
         <p className="header-eyebrow">Regenerative Community Organism</p>
@@ -367,7 +382,7 @@ export default function Home() {
       </header>
 
       {/* ===== WHAT IS AN RCO ===== */}
-      <section className="explainer">
+      <section id="what" className="explainer">
         <h2 className="explainer-title">What is an RCO?</h2>
         <p className="explainer-body">
           A <strong>Regenerative Community Organism</strong> is a new form of organizational design — created by entrepreneurs <strong>Nils von Heijne</strong> and <strong>Amit Paul</strong> — that fuses a for-profit enterprise with a nonprofit association under a shared, protected purpose.
@@ -407,7 +422,7 @@ export default function Home() {
       </section>
 
       {/* ===== WHY NOW ===== */}
-      <section className="why-now">
+      <section id="why" className="why-now">
         <h2 className="explainer-title">Why now?</h2>
         <div className="why-grid">
           <div className="why-card">
@@ -429,7 +444,7 @@ export default function Home() {
       </section>
 
       {/* ===== JOB AS PROOF ===== */}
-      <section className="job-rco">
+      <section id="job" className="job-rco">
         <span className="job-rco-eyebrow">Case study</span>
         <h2 className="explainer-title">J.O.B. is the first RCO in the United States.</h2>
         <p className="explainer-body">
@@ -459,10 +474,12 @@ export default function Home() {
       </div>
 
       {/* ===== DIAGNOSTIC ===== */}
-      <Diagnostic />
+      <div id="diagnostic">
+        <Diagnostic />
+      </div>
 
       {/* ===== IMPLEMENTER ===== */}
-      <section className="implementer">
+      <section id="build" className="implementer">
         <div className="implementer-inner">
           <span className="implementer-eyebrow">The path</span>
           <h2 className="implementer-title">Business 3.0: Official RCO Implementer</h2>
@@ -500,7 +517,7 @@ export default function Home() {
       </section>
 
       {/* ===== INVESTORS ===== */}
-      <section className="investors">
+      <section id="invest" className="investors">
         <h2 className="explainer-title">For investors</h2>
         <p className="explainer-body">
           The RCO isn&apos;t anti-profit. It&apos;s anti-extraction. Investors participate in the upside through the HoldCo — community-owned equity via Reg CF crowdfunding. When the organism thrives, everyone who believed in it shares in what it creates.
