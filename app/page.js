@@ -1123,8 +1123,8 @@ export default function Home() {
           <div className="invest-card">
             <span className="invest-card-tag">Forming</span>
             <h3>Dogcultr</h3>
-            <p className="invest-card-question">Guiding question forming.</p>
-            <p>An emerging US RCO joining J.O.B. in bringing the dual-entity model to a new ecosystem. More to share soon.</p>
+            <p className="invest-card-question">&ldquo;What kind of world do dogs want to live in?&rdquo;</p>
+            <p>An emerging US RCO joining J.O.B. in bringing the dual-entity model to a new ecosystem. The for-profit side will house conscious companies that honor dog sentience &mdash; dog doulas, psychedelics for dogs, journey guides. The nonprofit side: a dog church without the dogma.</p>
           </div>
         </div>
 
