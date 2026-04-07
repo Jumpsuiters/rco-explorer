@@ -972,6 +972,43 @@ a { color: inherit; text-decoration: none; }
 .phase-card-small h4 {
   margin-bottom: 0.4rem;
 }
+.sponsor-details {
+  margin-top: 0.85rem;
+}
+.sponsor-details summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  list-style: none;
+  padding: 0.4rem 0;
+  border-top: 1px solid var(--border);
+}
+.sponsor-details summary::-webkit-details-marker {
+  display: none;
+}
+.sponsor-details summary::after {
+  content: ' →';
+}
+.sponsor-details[open] summary::after {
+  content: ' ↓';
+}
+.sponsor-examples {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
+}
+.sponsor-examples li {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--muted);
+  line-height: 1.5;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed var(--border);
+}
+.sponsor-examples li:last-child {
+  border-bottom: none;
+}
 .implementer-note {
   font-size: 0.85rem;
   color: var(--muted);

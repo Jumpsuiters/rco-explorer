@@ -803,7 +803,7 @@ export default function Home() {
           <div className="nav-links">
             <a href="#what">The Model</a>
             <a href="#job">The Case Study</a>
-            <a href="#build">The Path</a>
+            <a href="#build">Create an RCO</a>
             <a href="#partner">Partner</a>
             <a href="#invest">Invest</a>
           </div>
@@ -962,7 +962,7 @@ export default function Home() {
       {/* ===== THE PATH ===== */}
       <section id="build" className="implementer">
         <div className="implementer-inner">
-          <span className="implementer-eyebrow">The path</span>
+          <span className="implementer-eyebrow">Create an RCO</span>
           <h2 className="implementer-title">We&apos;ll guide you through your RCO formation.</h2>
           <p className="implementer-body">
             The RCO formation process is a <strong>discovery process, not a design process</strong>. Together, we step toward the void at the center of your ecosystem and let what wants to emerge, emerge.
@@ -1072,7 +1072,7 @@ export default function Home() {
           </p>
           <div className="phase-grid phase-grid-small">
             <div className="phase-card phase-card-small">
-              <h4>Run the first 2 phases</h4>
+              <h4>Begin the Process</h4>
               <p>Direction Finding + Territory Mapping. Decide from there.</p>
             </div>
             <div className="phase-card phase-card-small">
@@ -1081,7 +1081,22 @@ export default function Home() {
             </div>
             <div className="phase-card phase-card-small">
               <h4>Sponsor an ecosystem</h4>
-              <p>Fund the formation of an RCO that needs to exist. Shape the field.</p>
+              <p>A philanthropic path. Fund the formation of an RCO for someone who has the passion and energy to give their life to it, but not the capital to begin. You hold the door open; they walk through it.</p>
+              <details className="sponsor-details">
+                <summary>See RCO questions our world needs</summary>
+                <ul className="sponsor-examples">
+                  <li>&ldquo;What would food look like if the soil were the shareholder?&rdquo;</li>
+                  <li>&ldquo;How do we raise children in a world that&apos;s forgotten how to be a village?&rdquo;</li>
+                  <li>&ldquo;What does end-of-life care look like when death is no longer the enemy?&rdquo;</li>
+                  <li>&ldquo;How do we rebuild trust between humans and the rivers we&apos;ve poisoned?&rdquo;</li>
+                  <li>&ldquo;What happens to a town when the factory leaves and no one comes to save it?&rdquo;</li>
+                  <li>&ldquo;How do we care for the incarcerated as if they were our own kin?&rdquo;</li>
+                  <li>&ldquo;What does it mean to grieve together in a culture that hides from loss?&rdquo;</li>
+                  <li>&ldquo;How do we return the forests to the people who know how to listen to them?&rdquo;</li>
+                  <li>&ldquo;What kind of medicine does a lonely generation actually need?&rdquo;</li>
+                  <li>&ldquo;How do veterans come home to a country that doesn&apos;t know what home is anymore?&rdquo;</li>
+                </ul>
+              </details>
             </div>
           </div>
 
