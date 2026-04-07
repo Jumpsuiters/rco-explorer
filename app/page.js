@@ -405,6 +405,18 @@ export default function Home() {
           The RCO framework was pioneered by <a href="https://rco.life" target="_blank" rel="noopener noreferrer">rco.life</a>. The first formally incorporated RCO is <a href="https://innrwrks.com" target="_blank" rel="noopener noreferrer">Innrwrks</a>, a resilience lab in Sweden.
         </p>
 
+        <div style={{ maxWidth: '720px', margin: '2rem auto 0' }}>
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+            <iframe
+              src="https://www.youtube.com/embed/yYmmUplsumQ"
+              title="What is a Regenerative Community Organism?"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 0, borderRadius: '12px' }}
+            />
+          </div>
+        </div>
+
         <div className="explainer-principles">
           <div className="explainer-principle">
             <span className="principle-label">Dual Entity</span>
